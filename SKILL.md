@@ -1,92 +1,92 @@
 ---
 name: long-running-work
-description: 长时间自动化工作的最佳实践。适用于 cron jobs、sub-agent 任务、多步骤复杂任务。当需要执行长时间运行的任务、委派子代理、或进行复杂工作时加载此 skill。
+description: Best practices for long-running automated tasks. Suitable for cron jobs, sub-agent tasks, and multi-step complex tasks. Load this skill when executing time-consuming tasks, delegating to sub-agents, or handling complex work.
 ---
 
-# Long-Running Work - 长时间工作最佳实践
+# Long-Running Work - Best Practices
 
-## 核心原则
+## Core Principles
 
-### 1. 开始前 - 明确目标
+### 1. Before Starting - Define Goals
 
-- **读取项目文档**: PROJECT.md + PLAN.md
-- **定义验收标准**: 什么是"完成"？
-- **规划步骤**: 分解为小步骤，每步可验证
-- **设置检查点**: 复杂任务使用 checkpoint 模式
+- **Read project docs**: PROJECT.md + PLAN.md
+- **Define acceptance criteria**: What does "done" look like?
+- **Plan steps**: Break into small, verifiable steps
+- **Set checkpoints**: Use checkpoint mode for complex tasks
 
-### 2. 执行中 - 保持状态
+### 2. During Execution - Maintain State
 
-- **定期保存**: 每完成关键步骤，保存进度
-- **验证结果**: 每步完成后立即验证，不要等到最后
-- **记录日志**: 关键决策和发现写入 Diaries/YYYY-MM-DD.md
-- **处理错误**: API 限流 (429) → 等待后重试；超时 → 增加超时时间
+- **Save regularly**: Save progress after each key step
+- **Verify results**: Verify immediately after each step, not at the end
+- **Log decisions**: Write key decisions/discoveries to Diaries/YYYY-MM-DD.md
+- **Handle errors**: API 429 → wait and retry; timeout → increase timeout
 
-### 3. 执行后 - 清理和汇报
+### 3. After Completion - Cleanup & Report
 
-- **验证最终结果**: 不要假设成功，要实际检查
-- **更新文档**: 
-  - PROJECT.md - 项目状态
-  - PLAN.md - Checkpoint 完成情况
-  - MEMORY.md - 重要经验教训
-- **发送汇报**: Telegram 简明扼要
+- **Verify final results**: Don't assume success, actually check
+- **Update docs**:
+  - PROJECT.md - project status
+  - PLAN.md - checkpoint completion
+  - MEMORY.md - key learnings
+- **Send report**: Concise Telegram message
 
-## 子代理管理 (sub-agent)
+## Sub-agent Management
 
-当需要委派任务时：
+When delegating tasks:
 
-### 任务描述模板
+### Task Description Template
 
 ```
-## 任务目标
-[具体要完成什么]
+## Task Goal
+[What exactly to complete]
 
-## 验收标准
-1. [可验证的标准1]
-2. [可验证的标准2]
+## Acceptance Criteria
+1. [Verifiable criteria 1]
+2. [Verifiable criteria 2]
 
-## 执行步骤
-1. [步骤1]
-2. [步骤2]
+## Execution Steps
+1. [Step 1]
+2. [Step 2]
 
-## 注意事项
-- [特殊要求或限制]
+## Notes
+- [Special requirements or constraints]
 ```
 
-### 结果审查
+### Result Review
 
-- 检查 git diff
-- 验证测试结果
-- 确认文档已更新
-- 如有问题，让子代理修复直到满意
+- Check git diff
+- Verify test results
+- Confirm docs updated
+- If issues, have sub-agent fix until satisfied
 
-## 检查点模式示例
+## Checkpoint Mode Example
 
 ```bash
-# 每个关键步骤后保存
+# Save after each key step
 python3 checkpoint_manager.py save fetch "done"
 python3 checkpoint_manager.py save analyze "done"
 python3 checkpoint_manager.py save html "done"
 python3 checkpoint_manager.py save deploy "done"
 
-# 任务完成后清除
+# Clear after completion
 python3 checkpoint_manager.py clear
 ```
 
-## 常见错误处理
+## Common Error Handling
 
-| 错误 | 处理方式 |
-|------|----------|
-| API 429 | 等待 30s，重试最多 3 次 |
-| 超时 | 增加 timeoutSeconds |
-| 验证失败 | 修复后重新部署，再次验证 |
-| 推送失败 | 检查 Telegram 配置 |
+| Error | Handling |
+|-------|----------|
+| API 429 | Wait 30s, retry up to 3 times |
+| Timeout | Increase timeoutSeconds |
+| Verification failed | Fix and redeploy, verify again |
+| Push failed | Check Telegram config |
 
-## 验证清单
+## Verification Checklist
 
-完成任何任务后，必须验证：
+After completing any task, must verify:
 
-- [ ] 代码/部署实际工作（不只是"认为"工作）
-- [ ] 相关文档已更新
-- [ ] Git 已提交
-- [ ] Telegram 已发送汇报
-- [ ] 日记已写入
+- [ ] Code/deployment actually works (not just "think" it works)
+- [ ] Relevant docs updated
+- [ ] Git committed
+- [ ] Telegram report sent
+- [ ] Diary written

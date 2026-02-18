@@ -1,51 +1,53 @@
 # Long-Running Work Skill - Plan
 
-## 目标
+## Goal
 
-创建一个 skill，帮助在长时间自动化工作中保持良好的工作流和工作习惯。
+Create a skill to maintain good workflow and working habits during long-running automated tasks.
 
-## Skill 概述
+## Skill Overview
 
-- **名称**: `long-running-work`
-- **用途**: 长期自动化任务（cron jobs、sub-agents）中的最佳工作实践
-- **触发场景**: 当执行需要长时间运行的任务、需要委派子代理、或者进行复杂的多步骤工作时
+- **Name**: `long-running-work`
+- **Purpose**: Best practices for long-running automated tasks (cron jobs, sub-agents)
+- **Trigger**: When executing time-consuming tasks, delegating to sub-agents, or handling complex multi-step work
 
-## 需要包含的内容
+## Content to Include
 
-### 1. 工作前规范
-- [ ] 检查项目状态（PROJECT.md, PLAN.md）
-- [ ] 确认任务目标和验收标准
-- [ ] 规划步骤和检查点
+### 1. Pre-execution Guidelines
+- [x] Check project status (PROJECT.md, PLAN.md)
+- [x] Confirm task goals and acceptance criteria
+- [x] Plan steps and checkpoints
 
-### 2. 执行中规范
-- [ ] 定期保存进度（checkpoint）
-- [ ] 验证每个步骤的结果
-- [ ] 记录关键决策到日记
+### 2. Execution Guidelines
+- [x] Save progress regularly (checkpoint)
+- [x] Verify results after each step
+- [x] Log key decisions to diary
 
-### 3. 执行后规范
-- [ ] 验证最终结果
-- [ ] 更新相关文档（MEMORY.md, PROJECT.md, PLAN.md）
-- [ ] 汇报完成状态
+### 3. Post-execution Guidelines
+- [x] Verify final results
+- [x] Update relevant docs (MEMORY.md, PROJECT.md, PLAN.md)
+- [x] Report completion status
 
-### 4. 子代理管理
-- [ ] 明确的任务描述
-- [ ] 验收标准定义
-- [ ] 结果审查流程
+### 4. Sub-agent Management
+- [x] Clear task descriptions
+- [x] Define acceptance criteria
+- [x] Result review process
 
-### 5. 特殊情况处理
-- [ ] API 限流处理
-- [ ] 超时处理
-- [ ] 错误恢复
+### 5. Error Handling
+- [x] API rate limiting handling
+- [x] Timeout handling
+- [x] Error recovery
 
-## 参考文件
+## Reference Files
 
-- `~/.openclaw/workspace/AGENTS.md` - 工作规则
-- `~/.openclaw/workspace/IDLE.md` - 空闲工作指南
-- `~/.openclaw/workspace/HEARTBEAT.md` - 心跳工作流
+- `~/.openclaw/workspace/AGENTS.md` - Working rules
+- `~/.openclaw/workspace/IDLE.md` - Idle work guide
+- `~/.openclaw/workspace/HEARTBEAT.md` - Heartbeat workflow
 
-## 执行步骤
+## Execution Steps
 
-1. 创建 SKILL.md
-2. 创建 references/ 目录（可选）
-3. 测试 skill 触发
-4. 更新 HEARTBEAT.md 引用此 skill
+1. Create SKILL.md ✅
+2. Create references/ directory (optional)
+3. Test skill trigger
+4. Update HEARTBEAT.md to reference this skill ✅
+
+## Status: Completed ✅
